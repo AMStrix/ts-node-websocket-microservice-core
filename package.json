@@ -1,0 +1,26 @@
+{
+  "name": "ts-node-websocket-microservice-core",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/AMStrix/ts-node-websocket-microservice-core.git",
+  "author": "Aaron <aaron.m.stricker@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn run build:live",
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/dev/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.11",
+    "nodemon": "^1.18.7",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.1"
+  },
+  "dependencies": {
+    "@types/ws": "^6.0.1",
+    "ws": "^6.1.2"
+  }
+}
