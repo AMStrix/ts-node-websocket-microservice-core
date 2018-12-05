@@ -1,5 +1,8 @@
+import dotenv from "dotenv";
 import http from "http";
 import fs from "fs";
+
+dotenv.load();
 
 import "../index";
 
@@ -13,7 +16,12 @@ const server = http
         throw err;
       }
       response.writeHead(200, { "Content-Type": "text/html" });
-      response.write(html);
+      response.write(
+        html
+          .toString()
+          .replace("$$API_SECRET_KEY", process.env.API_SECRET_KEY || "")
+          .replace("$$PORT", process.env.PORT || "")
+      );
       response.end();
     });
   })

@@ -1,4 +1,4 @@
-import { Send, Message } from "../..";
+import { Send, Message } from "../../service";
 import { Notifier } from "..";
 
 export default class Clock implements Notifier {
@@ -8,7 +8,7 @@ export default class Clock implements Notifier {
     this.send({ type: "clock", payload: { time: new Date().toISOString() } });
   };
 
-  private intervalID = setInterval(this.sendClockMessage, 10000);
+  private intervalId = setInterval(this.sendClockMessage, 10000);
 
   receive = (message: Message) => {
     if (message.type === "clock") {
@@ -22,4 +22,6 @@ export default class Clock implements Notifier {
   };
 
   registerSend = (sm: Send) => (this.send = sm);
+
+  destroy = () => clearInterval(this.intervalId);
 }
